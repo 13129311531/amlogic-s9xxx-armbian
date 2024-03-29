@@ -12,34 +12,24 @@ on:
       set_release:
         description: "Select OS Release."
         required: false
-        default: "jammy"
+        default: "noble"
         type: choice
         options:
-          - jammy
           - noble
-          - bullseye
-          - bookworm
       armbian_board:
         description: "Select device board."
         required: false
-        default: "all"
+        default: "h68k"
         type: choice
         options:
           - h68k
       armbian_kernel:
         description: "Select kernel version."
         required: false
-        default: "6.1.y_5.15.y"
+        default: "6.6.y"
         type: choice
         options:
-          - 5.4.y
-          - 5.10.y
-          - 5.15.y
-          - 6.1.y
           - 6.6.y
-          - 6.1.y_6.6.y
-          - 6.1.y_5.15.y
-          - 5.4.y_5.10.y
       auto_kernel:
         description: "Auto use the latest kernel."
         required: false
@@ -55,20 +45,16 @@ on:
       kernel_usage:
         description: "Set the tags of the stable kernel."
         required: false
-        default: "stable"
+        default: "beta"
         type: choice
         options:
-          - stable
-          - flippy
-          - dev
           - beta
       armbian_fstype:
         description: "Select armbian rootfs type."
         required: false
-        default: "ext4"
+        default: "btrfs"
         type: choice
         options:
-          - ext4
           - btrfs
       armbian_storage:
         description: "Select image storage type."
@@ -77,7 +63,6 @@ on:
         type: choice
         options:
           - save
-          - temp
       builder_name:
         description: "Set Armbian builder signature."
         required: false
@@ -85,8 +70,6 @@ on:
         type: choice
         options:
           - ophub
-          - angel
-          - yourname
 
 env:
   TZ: America/New_York
@@ -94,7 +77,7 @@ env:
 
 jobs:
   build:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu
     if: ${{ github.event.repository.owner.id }} == ${{ github.event.sender.id }}
 
     steps:
